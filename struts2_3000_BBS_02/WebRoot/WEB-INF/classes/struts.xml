@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.configuration.xml.reload" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    
+    <package name="admin" extends="struts-default" namespace="/admin">
+	    <action name="*-*" class="com.juan.struts.bbs.action.{1}Action" method="{2}">
+	    	<result>/admin/{1}-{2}.jsp</result>
+	    	<result name="input">/admin/{1}-{2}.jsp</result>
+	    </action>  
+	    
+	    <!-- 动态方法调用   用类名!方法名 -->
+	     <!-- <action name="category" class="com.juan.struts.bbs.action.CataegoryAction">
+	    	<result>/admin/category_list.jsp</result>
+	    	<result name="add_input">/admin/category_add_input.jsp</result>
+	    	<result name="update_input">/admin/category_add_update.jsp</result>
+	    </action>   --> 
+	     
+    </package> 
+    
+    <package name="front" extends="struts-default" namespace="/">
+    	<default-action-ref name="Category_list" />
+	    <action name="Category_list" class="com.juan.struts.bbs.action.CategoryAction" method="list">
+	    	<result>/index.jsp</result>
+	    </action>   
+    </package>
+</struts>
